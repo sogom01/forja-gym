@@ -5,78 +5,98 @@ export interface Props {
   ogImage?: string;
 }
 const {
-  title       = 'FORJA · Centro de Entrenamiento — Manizales',
-  description = 'Entrena con propósito. Funcional, fuerza y acondicionamiento en el corazón de Manizales. Primera clase gratis.',
-  ogImage     = '/og-forja.jpg',
+  title = "FORJA · Centro de Entrenamiento — Manizales",
+  description = "Entrena con propósito. Funcional, fuerza y acondicionamiento en el corazón de Manizales. Primera clase gratis.",
+  ogImage = "/og-forja.jpg",
 } = Astro.props;
 
-const siteUrl = 'https://forjagym.co';
+const siteUrl = "https://forjagym.co";
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0B0C0E" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0B0C0E" />
 
-  <title>{title}</title>
-  <meta name="description" content={description} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
 
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content={siteUrl} />
-  <meta property="og:title"       content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image"       content={siteUrl + ogImage} />
-  <meta name="twitter:card"       content="summary_large_image" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={siteUrl + ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href={siteUrl} />
+    <!-- Canonical -->
+    <link rel="canonical" href={siteUrl} />
 
-  <!-- Fonts: preconnect + swap -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+    <!-- Fonts: preconnect + swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Schema.org LocalBusiness -->
-  <script type="application/ld+json" is:inline>
-  {
-    "@context": "https://schema.org",
-    "@type": "HealthClub",
-    "name": "FORJA Centro de Entrenamiento",
-    "description": "Entrenamiento funcional, fuerza y acondicionamiento en Manizales.",
-    "url": "https://forjagym.co",
-    "telephone": "+573000000000",
-    "email": "hola@forjagym.co",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Santander #50-30",
-      "addressLocality": "Manizales",
-      "addressRegion": "Caldas",
-      "addressCountry": "CO"
-    },
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "05:00", "closes": "22:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "06:00", "closes": "18:00" }
-    ],
-    "priceRange": "$$"
-  }
-  </script>
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthClub",
+        "name": "FORJA Centro de Entrenamiento",
+        "description": "Entrenamiento funcional, fuerza y acondicionamiento en Manizales.",
+        "url": "https://forjagym.co",
+        "telephone": "+573000000000",
+        "email": "hola@forjagym.co",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Santander #50-30",
+          "addressLocality": "Manizales",
+          "addressRegion": "Caldas",
+          "addressCountry": "CO"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "05:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "06:00",
+            "closes": "18:00"
+          }
+        ],
+        "priceRange": "$$"
+      }
+    </script>
 
-  <style>
-    /* Critical CSS inline — evita FOUC */
-    body { background:#0B0C0E; color:#F4F6F4 }
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main">Saltar al contenido</a>
-  <slot />
-</body>
+    <style>
+      /* Critical CSS inline — evita FOUC */
+      body {
+        background: #0b0c0e;
+        color: #f4f6f4;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <slot />
+  </body>
 </html>
