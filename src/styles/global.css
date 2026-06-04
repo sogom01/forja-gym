@@ -1,0 +1,122 @@
+/* ===========================
+   FORJA — Design Tokens & Reset
+   =========================== */
+
+:root {
+  --bg:       #0B0C0E;
+  --bg-2:     #131519;
+  --panel:    #191C21;
+  --line:     rgba(255,255,255,.08);
+  --volt:     #CCFF00;
+  --volt-deep:#A8D400;
+  --white:    #F4F6F4;
+  --gray:     #8C9197;
+  --gray-2:   #5A5F66;
+
+  --font-display: 'Anton', sans-serif;
+  --font-body:    'Sora', sans-serif;
+
+  --radius-btn: polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  --wrap: clamp(20px, 5vw, 56px);
+}
+
+/* Reset */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100% }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a  { color:inherit; text-decoration:none }
+img, video { display:block; max-width:100%; height:auto }
+button { cursor:pointer; border:none; background:none; font:inherit }
+ul { list-style:none }
+
+/* Skip link — accesibilidad */
+.skip-link {
+  position:absolute; left:-9999px; top:4px;
+  background:var(--volt); color:#0B0C0E;
+  padding:8px 16px; font-weight:800; z-index:9999;
+}
+.skip-link:focus { left:4px }
+
+/* Layout */
+.wrap { max-width:1240px; margin:0 auto; padding:0 var(--wrap) }
+.section { padding:clamp(80px,12vh,150px) 0 }
+
+/* Typography utilities */
+.display,
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight:400;
+  text-transform:uppercase;
+  line-height:.95;
+  letter-spacing:.005em;
+}
+.eyebrow {
+  display:block;
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--volt);
+}
+.accent { color:var(--volt) }
+.stroke  { -webkit-text-stroke:2px var(--volt); color:transparent }
+
+/* Buttons */
+.btn {
+  display:inline-block;
+  font-family: var(--font-body);
+  font-weight:800;
+  font-size:.82rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:13px 26px;
+  background:var(--volt);
+  color:#0B0C0E;
+  clip-path: var(--radius-btn);
+  transition:background .25s, transform .25s, color .25s;
+  border:none;
+  white-space:nowrap;
+}
+.btn:hover { background:var(--white); transform:translateY(-2px) }
+.btn:focus-visible {
+  outline:2px solid var(--volt);
+  outline-offset:3px;
+  border-radius:2px;
+}
+.btn--outline {
+  background:transparent;
+  color:var(--white);
+  border:1.5px solid rgba(255,255,255,.25);
+  clip-path:none;
+}
+.btn--outline:hover {
+  border-color:var(--volt);
+  color:var(--volt);
+  background:transparent;
+  transform:translateY(-2px);
+}
+.btn--dark {
+  background:#0B0C0E;
+  color:var(--volt);
+}
+.btn--dark:hover { background:var(--bg-2) }
+
+/* Reveal animation */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity:0;
+    transform:translateY(38px);
+    transition:opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1);
+  }
+  .reveal.in { opacity:1; transform:none }
+  .reveal[data-delay="1"] { transition-delay:.12s }
+  .reveal[data-delay="2"] { transition-delay:.24s }
+  .reveal[data-delay="3"] { transition-delay:.36s }
+}

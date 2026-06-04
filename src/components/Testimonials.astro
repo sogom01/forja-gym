@@ -1,0 +1,116 @@
+---
+const testimonials = [
+  {
+    name:   'Valentina R.',
+    tag:    'Plan Total · 8 meses',
+    quote:  'Llegué sin saber nada de entrenamiento. Hoy levanto el doble de lo que imaginé y perdí 14 kg. FORJA cambió mi relación con el ejercicio para siempre.',
+    avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    name:   'Andrés M.',
+    tag:    'Plan Élite · 1 año',
+    quote:  'Tenía lesiones viejas de rodilla y me dijeron que nunca podría hacer sentadillas. Mi entrenador en FORJA encontró la forma. Ahora compito en powerlifting.',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    name:   'Camila T.',
+    tag:    'Plan Total · 6 meses',
+    quote:  'El ambiente es diferente. No hay juicios, hay comunidad. Los entrenadores te conocen por tu nombre y saben exactamente dónde estás parado.',
+    avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80',
+  },
+];
+---
+<section class="section testimonials">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center">
+      <span class="eyebrow">Lo que dicen nuestros miembros</span>
+      <h2>Resultados que hablan</h2>
+    </div>
+
+    <div class="test-grid">
+      {testimonials.map((t, i) => (
+        <blockquote class="card reveal" data-delay={String(i)}>
+          <p class="quote">"{t.quote}"</p>
+          <footer class="author">
+            <img src={t.avatar} alt={`Foto de ${t.name}`} loading="lazy" decoding="async" />
+            <div>
+              <strong>{t.name}</strong>
+              <span>{t.tag}</span>
+            </div>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.testimonials { background:#131519 }
+
+.test-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card {
+  background:#191C21;
+  border:1px solid rgba(255,255,255,.08);
+  padding:clamp(24px,4vw,36px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:28px;
+  position:relative;
+  transition:border-color .3s, transform .3s;
+}
+.card::before {
+  content:'"';
+  position:absolute;
+  top:20px; right:24px;
+  font-family:'Anton',sans-serif;
+  font-size:5rem; line-height:1;
+  color:#CCFF00; opacity:.12;
+  pointer-events:none;
+}
+.card:hover {
+  border-color:rgba(204,255,0,.25);
+  transform:translateY(-4px);
+}
+
+.quote {
+  font-size:clamp(.9rem,1.5vw,1.02rem);
+  color:#8C9197;
+  line-height:1.75;
+  flex:1;
+}
+
+.author {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-style:normal;
+}
+.author img {
+  width:48px; height:48px;
+  border-radius:50%;
+  object-fit:cover;
+  flex:none;
+  border:2px solid #CCFF00;
+}
+.author strong {
+  display:block;
+  font-size:.95rem;
+  font-weight:700;
+  color:#F4F6F4;
+}
+.author span {
+  font-size:.78rem;
+  color:#5A5F66;
+  letter-spacing:.04em;
+}
+
+@media(max-width:900px){
+  .test-grid { grid-template-columns:1fr }
+}
+</style>

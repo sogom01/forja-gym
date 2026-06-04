@@ -1,0 +1,53 @@
+---
+const stats = [
+  { n: '1.200+', l: 'Miembros activos' },
+  { n: '25',     l: 'Clases por semana' },
+  { n: '12',     l: 'Entrenadores' },
+  { n: '600m²',  l: 'De instalaciones' },
+];
+---
+<section class="stats" aria-label="Números FORJA">
+  <div class="wrap">
+    {stats.map((s, i) => (
+      <div class="stat reveal" data-delay={String(i)}>
+        <div class="n" aria-label={s.n}>{s.n}</div>
+        <div class="l">{s.l}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+.stats {
+  background:#CCFF00;
+  color:#0B0C0E;
+}
+.stats .wrap {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  padding-top:40px;
+  padding-bottom:40px;
+}
+.stat { text-align:center }
+.n {
+  font-family:'Anton',sans-serif;
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  line-height:1;
+}
+.l {
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-top:6px;
+  opacity:.7;
+}
+
+@media(max-width:700px){
+  .stats .wrap { grid-template-columns:1fr 1fr; gap:30px 20px }
+}
+@media(max-width:380px){
+  .stats .wrap { grid-template-columns:1fr }
+}
+</style>

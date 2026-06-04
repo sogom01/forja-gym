@@ -1,0 +1,105 @@
+---
+const programs = [
+  {
+    num: '01',
+    title: 'Fuerza & Hierro',
+    desc:  'Rutinas de musculación con seguimiento personalizado de cargas y progreso semanal.',
+    img:   'https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=700&q=80',
+    alt:   'Entrenamiento de fuerza',
+  },
+  {
+    num: '02',
+    title: 'Funcional & HIIT',
+    desc:  'Circuitos de alta intensidad para quemar grasa y construir resistencia real.',
+    img:   'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=700&q=80',
+    alt:   'Entrenamiento funcional',
+  },
+  {
+    num: '03',
+    title: 'Movilidad & Yoga',
+    desc:  'Flexibilidad, equilibrio y recuperación activa para entrenar sin lesiones.',
+    img:   'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80',
+    alt:   'Clase de movilidad y yoga',
+  },
+];
+---
+<section class="section" id="programas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nuestros programas</span>
+      <h2>Encuentra tu disciplina</h2>
+    </div>
+    <div class="programs-grid">
+      {programs.map((p, i) => (
+        <article class="prog reveal" data-delay={String(i)}>
+          <img src={p.img} alt={p.alt} loading="lazy" decoding="async" />
+          <div class="prog-overlay">
+            <span class="num" aria-hidden="true">{p.num}</span>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.sec-head { margin-bottom:clamp(40px,6vh,70px) }
+.sec-head h2 { font-size:clamp(2.2rem,6vw,4.4rem); margin-top:.2em }
+
+.programs-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.prog {
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+}
+.prog img {
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:grayscale(.6) brightness(.55);
+  transition:filter .6s, transform .6s;
+}
+.prog:hover img,
+.prog:focus-within img {
+  filter:grayscale(0) brightness(.68);
+  transform:scale(1.06);
+}
+
+.prog-overlay {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:clamp(18px,3vw,28px);
+  background:linear-gradient(0deg, rgba(11,12,14,.93) 5%, transparent 65%);
+}
+.num {
+  font-family:'Anton',sans-serif;
+  font-size:1rem; color:#CCFF00; opacity:.7;
+}
+.prog-overlay h3 {
+  font-size:clamp(1.4rem,2.5vw,1.7rem);
+  margin:6px 0;
+}
+.prog-overlay p {
+  font-size:.88rem; color:#8C9197;
+  max-height:0; overflow:hidden; opacity:0;
+  transition:max-height .45s ease, opacity .4s ease, margin-top .35s;
+}
+.prog:hover .prog-overlay p,
+.prog:focus-within .prog-overlay p {
+  max-height:100px; opacity:1; margin-top:8px;
+}
+
+/* Mobile: always show description */
+@media(max-width:900px){
+  .programs-grid { grid-template-columns:1fr }
+  .prog { aspect-ratio:16/9 }
+  .prog-overlay p { max-height:100px; opacity:1; margin-top:8px }
+}
+</style>

@@ -1,0 +1,190 @@
+---
+---
+<section class="bigcta" id="contacto">
+  <div class="cta-bg" role="img" aria-label="Atletas entrenando en FORJA">
+    <img
+      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="wrap cta-inner">
+    <div class="cta-text reveal">
+      <span class="eyebrow">Primera clase gratis</span>
+      <h2>Tu primera clase<br>es por <span class="accent">nuestra cuenta</span>.</h2>
+      <p>Escríbenos, agenda tu visita y conoce FORJA sin compromiso. Sin tarjeta. Sin letra pequeña.</p>
+    </div>
+
+    <form class="cta-form reveal" data-delay="1" id="ctaForm" novalidate>
+      <div class="field">
+        <label for="fname">Nombre</label>
+        <input
+          type="text" id="fname" name="nombre"
+          placeholder="Tu nombre completo"
+          autocomplete="name"
+          required minlength="2" maxlength="80"
+        />
+        <span class="err" id="fname-err" role="alert" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for="fphone">WhatsApp / Teléfono</label>
+        <input
+          type="tel" id="fphone" name="telefono"
+          placeholder="+57 300 000 0000"
+          autocomplete="tel"
+          required pattern="[\d\s\+\-\(\)]{7,20}"
+        />
+        <span class="err" id="fphone-err" role="alert" aria-live="polite"></span>
+      </div>
+      <button type="submit" class="btn btn--submit">
+        Reservar clase gratis →
+      </button>
+      <p class="privacy">Tu información no se comparte con terceros.</p>
+    </form>
+  </div>
+</section>
+
+<style>
+.bigcta {
+  position:relative;
+  padding:clamp(90px,14vh,170px) 0;
+  overflow:hidden;
+}
+.cta-bg {
+  position:absolute; inset:0; z-index:-1;
+}
+.cta-bg img {
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:grayscale(.5) brightness(.28);
+}
+.cta-bg::after {
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,
+    rgba(11,12,14,.95) 0%,
+    rgba(11,12,14,.75) 55%,
+    rgba(11,12,14,.6) 100%
+  );
+}
+
+.cta-inner {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(40px,6vw,80px);
+  align-items:center;
+}
+
+.cta-text h2 {
+  font-size:clamp(2.4rem,6vw,5rem);
+  margin:.2em 0 .4em;
+}
+.cta-text p {
+  color:#8C9197;
+  font-size:1rem;
+  max-width:420px;
+}
+
+/* Form */
+.cta-form {
+  background:rgba(25,28,33,.85);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:clamp(28px,4vw,42px);
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.field { display:flex; flex-direction:column; gap:6px }
+label {
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#8C9197;
+}
+input {
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  color:#F4F6F4;
+  padding:13px 16px;
+  font-family:'Sora',sans-serif;
+  font-size:.95rem;
+  border-radius:2px;
+  transition:border-color .25s, background .25s;
+  outline:none;
+}
+input::placeholder { color:#5A5F66 }
+input:focus {
+  border-color:#CCFF00;
+  background:rgba(204,255,0,.04);
+}
+input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color:rgba(255,80,80,.5);
+}
+.err {
+  font-size:.78rem; color:#ff6b6b;
+  min-height:1rem;
+}
+
+.btn--submit {
+  width:100%;
+  font-size:.9rem;
+  padding:15px;
+  margin-top:6px;
+}
+.privacy {
+  font-size:.76rem;
+  color:#5A5F66;
+  text-align:center;
+}
+
+@media(max-width:900px){
+  .cta-inner { grid-template-columns:1fr }
+  .cta-text p { max-width:none }
+}
+</style>
+
+<script>
+  const form    = document.getElementById('ctaForm') as HTMLFormElement;
+  const nameIn  = document.getElementById('fname')   as HTMLInputElement;
+  const phoneIn = document.getElementById('fphone')  as HTMLInputElement;
+  const nameErr = document.getElementById('fname-err')!;
+  const phoneErr= document.getElementById('fphone-err')!;
+
+  function validateName(): boolean {
+    const v = nameIn.value.trim();
+    if (!v || v.length < 2) {
+      nameErr.textContent = 'Ingresa tu nombre completo.';
+      return false;
+    }
+    nameErr.textContent = '';
+    return true;
+  }
+  function validatePhone(): boolean {
+    const v = phoneIn.value.trim();
+    if (!v || !/^[\d\s\+\-\(\)]{7,20}$/.test(v)) {
+      phoneErr.textContent = 'Ingresa un número válido (ej: +57 300 000 0000).';
+      return false;
+    }
+    phoneErr.textContent = '';
+    return true;
+  }
+
+  nameIn.addEventListener('blur', validateName);
+  phoneIn.addEventListener('blur', validatePhone);
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const ok = validateName() & validatePhone();
+    if (!ok) return;
+
+    const nombre   = encodeURIComponent(nameIn.value.trim());
+    const telefono = encodeURIComponent(phoneIn.value.trim());
+    const msg      = `Hola FORJA, soy ${nombre} (${telefono}). Quiero reservar mi primera clase gratuita.`;
+    window.open(`https://wa.me/573000000000?text=${msg}`, '_blank', 'noopener,noreferrer');
+  });
+</script>

@@ -1,17 +1,43 @@
 ---
+import Base          from '../layouts/Base.astro';
+import Nav           from '../components/Nav.astro';
+import Hero          from '../components/Hero.astro';
+import Stats         from '../components/Stats.astro';
+import Programs      from '../components/Programs.astro';
+import WhyForja      from '../components/WhyForja.astro';
+import Schedule      from '../components/Schedule.astro';
+import Testimonials  from '../components/Testimonials.astro';
+import Pricing       from '../components/Pricing.astro';
+import CTA           from '../components/CTA.astro';
+import Footer        from '../components/Footer.astro';
+import WhatsAppBtn   from '../components/WhatsAppBtn.astro';
 
+import '../styles/global.css';
 ---
+<Base>
+  <Nav />
+  <Hero />
+  <Stats />
+  <Programs />
+  <WhyForja />
+  <Schedule />
+  <Testimonials />
+  <Pricing />
+  <CTA />
+  <Footer />
+  <WhatsAppBtn />
+</Base>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<script>
+  // Reveal on scroll — runs once per element
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>

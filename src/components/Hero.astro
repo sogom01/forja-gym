@@ -1,0 +1,138 @@
+---
+---
+<header id="main" tabindex="-1">
+  <div class="vbar" aria-hidden="true"></div>
+
+  <div class="hero-bg" role="img" aria-label="Entrenamiento en FORJA">
+    <img
+      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=80"
+      alt=""
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+
+  <div class="wrap hero-content">
+    <span class="eyebrow animate" style="--d:.2s">Centro de entrenamiento · Manizales</span>
+    <h1 class="animate" style="--d:.34s">
+      Tu mejor versión<br>
+      se <span class="stroke">forja</span> <span class="accent">aquí</span>.
+    </h1>
+    <p class="animate" style="--d:.5s">
+      Entrenamiento funcional, fuerza y acondicionamiento guiados por expertos.
+      Sin excusas, con resultados reales.
+    </p>
+    <div class="hero-actions animate" style="--d:.64s">
+      <a href="#planes" class="btn">Empieza hoy →</a>
+      <a href="#programas" class="btn btn--outline">Ver programas</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-hint animate" style="--d:.9s" aria-hidden="true">
+    <span></span>
+  </div>
+</header>
+
+<style>
+header {
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  padding-top:80px;
+  overflow:hidden;
+}
+
+/* Vertical accent bar */
+.vbar {
+  position:absolute; right:0; top:0; bottom:0;
+  width:5px; background:#CCFF00; z-index:2;
+}
+
+/* Background image */
+.hero-bg {
+  position:absolute; inset:0; z-index:-1;
+}
+.hero-bg img {
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:grayscale(.3) brightness(.48);
+  transform:scale(1.06);
+  animation:hz 16s ease-out forwards;
+}
+.hero-bg::after {
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(105deg,
+    rgba(11,12,14,.97) 0%,
+    rgba(11,12,14,.72) 45%,
+    rgba(11,12,14,.22) 100%
+  );
+}
+@keyframes hz { to { transform:scale(1) } }
+
+/* Content */
+.hero-content { max-width:820px; position:relative; z-index:1 }
+.hero-content h1 {
+  font-size:clamp(3.4rem,11vw,8rem);
+  margin:.1em 0 .28em;
+}
+.hero-content p {
+  font-size:clamp(1rem,2vw,1.25rem);
+  color:#8C9197;
+  max-width:500px;
+  margin-bottom:34px;
+}
+.hero-actions {
+  display:flex; gap:14px; flex-wrap:wrap;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position:absolute;
+  bottom:32px; left:50%; transform:translateX(-50%);
+  z-index:2;
+}
+.scroll-hint span {
+  display:block;
+  width:22px; height:36px;
+  border:2px solid rgba(255,255,255,.2);
+  border-radius:20px;
+  position:relative;
+}
+.scroll-hint span::before {
+  content:"";
+  position:absolute;
+  top:6px; left:50%; transform:translateX(-50%);
+  width:3px; height:8px;
+  background:#CCFF00;
+  border-radius:3px;
+  animation:scrolldot 1.8s ease-in-out infinite;
+}
+@keyframes scrolldot {
+  0%   { opacity:1; transform:translateX(-50%) translateY(0) }
+  80%  { opacity:0; transform:translateX(-50%) translateY(14px) }
+  100% { opacity:0; transform:translateX(-50%) translateY(0) }
+}
+
+/* Entrance animations */
+@media (prefers-reduced-motion: no-preference) {
+  .animate {
+    opacity:0;
+    transform:translateY(30px);
+    animation:rise .85s var(--d, 0s) cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  @keyframes rise {
+    to { opacity:1; transform:none }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate { opacity:1; transform:none }
+}
+
+@media(max-width:600px){
+  header { padding-top:70px }
+  .scroll-hint { display:none }
+}
+</style>

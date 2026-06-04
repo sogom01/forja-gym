@@ -1,0 +1,157 @@
+---
+const plans = [
+  {
+    tag:      'Esencial',
+    price:    '$79k',
+    period:   '/mes',
+    featured: false,
+    badge:    null,
+    items: [
+      'Acceso a sala de pesas',
+      'Horario completo',
+      'Rutina inicial guiada',
+      'App de seguimiento',
+    ],
+  },
+  {
+    tag:      'Total',
+    price:    '$129k',
+    period:   '/mes',
+    featured: true,
+    badge:    '★ Más elegido',
+    items: [
+      'Todo lo del plan Esencial',
+      'Clases grupales ilimitadas',
+      'Plan nutricional básico',
+      '1 sesión personalizada / mes',
+    ],
+  },
+  {
+    tag:      'Élite',
+    price:    '$199k',
+    period:   '/mes',
+    featured: false,
+    badge:    null,
+    items: [
+      'Todo lo del plan Total',
+      'Entrenador personal dedicado',
+      'Plan nutricional avanzado',
+      'Evaluación física mensual',
+    ],
+  },
+];
+---
+<section class="section" id="planes">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center">
+      <span class="eyebrow">Planes y membresías</span>
+      <h2>Elige tu compromiso</h2>
+    </div>
+
+    <div class="plans-grid">
+      {plans.map((p, i) => (
+        <div class:list={['plan reveal', { 'plan--featured': p.featured }]} data-delay={String(i)}>
+          {p.badge && <span class="badge">{p.badge}</span>}
+          <span class="plan-tag">{p.tag}</span>
+          <div class="price">
+            {p.price}<small>{p.period}</small>
+          </div>
+          <ul>
+            {p.items.map(item => <li>{item}</li>)}
+          </ul>
+          <a
+            href="#contacto"
+            class:list={['btn', p.featured ? 'btn--dark' : 'btn--outline']}
+            style="text-align:center;display:block"
+          >
+            Empezar
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.plans-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  align-items:start;
+}
+
+.plan {
+  background:#191C21;
+  border:1px solid rgba(255,255,255,.08);
+  padding:clamp(28px,4vw,40px) clamp(22px,3vw,32px);
+  display:flex;
+  flex-direction:column;
+  transition:transform .3s, border-color .3s;
+}
+.plan:hover { transform:translateY(-6px); border-color:rgba(204,255,0,.28) }
+
+.plan--featured {
+  background:#CCFF00;
+  color:#0B0C0E;
+  border-color:#CCFF00;
+}
+.plan--featured:hover { border-color:#A8D400 }
+
+.badge {
+  display:inline-block;
+  background:#0B0C0E;
+  color:#CCFF00;
+  font-size:.68rem; font-weight:800;
+  letter-spacing:.14em;
+  padding:5px 12px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+  align-self:flex-start;
+}
+.plan--featured .badge { background:rgba(11,12,14,.9) }
+
+.plan-tag {
+  font-size:.74rem; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:#8C9197;
+}
+.plan--featured .plan-tag { color:rgba(11,12,14,.6) }
+
+.price {
+  font-family:'Anton',sans-serif;
+  font-size:clamp(2.4rem,5vw,3.2rem);
+  line-height:1;
+  margin:14px 0 4px;
+}
+.price small {
+  font-family:'Sora',sans-serif;
+  font-size:.9rem; font-weight:600;
+  color:#8C9197;
+}
+.plan--featured .price small { color:rgba(11,12,14,.6) }
+
+ul {
+  margin:24px 0 28px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+li {
+  padding:9px 0;
+  font-size:.92rem;
+  color:#8C9197;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex; gap:10px; align-items:baseline;
+}
+li::before { content:"›"; color:#CCFF00; font-weight:800; flex:none }
+.plan--featured li {
+  color:rgba(11,12,14,.8);
+  border-color:rgba(11,12,14,.12);
+}
+.plan--featured li::before { color:#0B0C0E }
+
+@media(max-width:900px){
+  .plans-grid { grid-template-columns:1fr; max-width:480px; margin:0 auto }
+}
+</style>

@@ -1,0 +1,86 @@
+---
+const days = [
+  { day: 'Lun', slots: ['05:30','07:00','09:00','12:00','18:00','20:00'] },
+  { day: 'Mar', slots: ['05:30','07:00','09:00','12:00','18:00','20:00'] },
+  { day: 'Mié', slots: ['05:30','07:00','09:00','12:00','18:00','20:00'] },
+  { day: 'Jue', slots: ['05:30','07:00','09:00','12:00','18:00','20:00'] },
+  { day: 'Vie', slots: ['05:30','07:00','09:00','12:00','18:00','19:00'] },
+  { day: 'Sáb', slots: ['06:00','08:00','10:00','12:00'] },
+];
+---
+<section class="section" id="horarios">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center">
+      <span class="eyebrow">Horarios de clases</span>
+      <h2>Siempre hay una clase<br>para ti</h2>
+    </div>
+
+    <div class="schedule-grid">
+      {days.map((d, i) => (
+        <div class="day-col reveal" data-delay={String(i % 3)}>
+          <div class="day-label">{d.day}</div>
+          <ul>
+            {d.slots.map(s => (
+              <li><time>{s}</time></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="note reveal">
+      <span class="accent">*</span> Clases grupales. Sala de pesas disponible de lunes a viernes <strong>5:00 a.m. – 10:00 p.m.</strong> y sábados <strong>6:00 a.m. – 6:00 p.m.</strong>
+    </p>
+  </div>
+</section>
+
+<style>
+.sec-head h2 { font-size:clamp(2.2rem,6vw,4.4rem); margin-top:.2em }
+
+.schedule-grid {
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+  margin-bottom:28px;
+}
+
+.day-col {
+  background:#191C21;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:4px;
+  overflow:hidden;
+}
+.day-label {
+  background:#CCFF00;
+  color:#0B0C0E;
+  font-family:'Anton',sans-serif;
+  font-size:1rem;
+  letter-spacing:.08em;
+  text-align:center;
+  padding:10px 6px;
+}
+.day-col ul { padding:10px 0 }
+.day-col li {
+  text-align:center;
+  padding:8px 6px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:.84rem;
+  color:#8C9197;
+  transition:background .2s, color .2s;
+}
+.day-col li:last-child { border-bottom:none }
+.day-col li:hover { background:rgba(204,255,0,.06); color:#F4F6F4 }
+time { font-weight:600 }
+
+.note {
+  font-size:.86rem; color:#5A5F66;
+  text-align:center; line-height:1.7;
+}
+
+@media(max-width:900px){
+  .schedule-grid { grid-template-columns:repeat(3,1fr) }
+}
+@media(max-width:500px){
+  .schedule-grid { grid-template-columns:repeat(2,1fr) }
+}
+</style>
