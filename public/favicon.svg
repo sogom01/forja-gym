@@ -1,16 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Fondo negro carbón con corte angular inferior-derecho (identidad FORJA) -->
-  <polygon points="0,0 128,0 128,108 108,128 0,128" fill="#0B0C0E"/>
+  <!-- Fondo negro con corte angular — identidad FORJA -->
+  <polygon points="0,0 128,0 128,100 100,128 0,128" fill="#0B0C0E"/>
   <!-- Acento volt en el corte -->
-  <polygon points="108,128 128,108 128,128" fill="#CCFF00"/>
-  <!-- Letra F — Anton-style, bold, centrada -->
-  <text
-    x="22"
-    y="98"
-    font-family="Arial Black, Arial, sans-serif"
-    font-weight="900"
-    font-size="88"
-    fill="#CCFF00"
-    letter-spacing="-4"
-  >F</text>
+  <polygon points="100,128 128,100 128,128" fill="#CCFF00"/>
+
+  <!-- Mancuerna centrada -->
+  <!-- Barra central -->
+  <rect x="38" y="58" width="52" height="12" fill="#CCFF00" rx="3"/>
+
+  <!-- Disco izquierdo externo -->
+  <rect x="16" y="46" width="12" height="36" fill="#CCFF00" rx="4"/>
+  <!-- Disco izquierdo interno -->
+  <rect x="28" y="50" width="10" height="28" fill="#CCFF00" rx="3"/>
+
+  <!-- Disco derecho interno -->
+  <rect x="90" y="50" width="10" height="28" fill="#CCFF00" rx="3"/>
+  <!-- Disco derecho externo -->
+  <rect x="100" y="46" width="12" height="36" fill="#CCFF00" rx="4"/>
 </svg>
